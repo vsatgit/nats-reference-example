@@ -1,0 +1,35 @@
+# This file is an additional file to the origin docker-compose.yml.
+# Any override information to the defaule docker-compose.yml need to be provided here
+# Also this file contains the optional dockers related to the project which mean those that 
+# are not really required for its operation
+version: "3.3"
+services:
+  nats-box:
+    hostname: nats-box
+    container_name: nats-box
+    image: natsio/nats-box:0.14.0
+    command: ["/bin/ash", "/usr/local/bin/nats-box-entrypoint.sh"]
+    volumes:
+    - ./build/ci/nats:/build
+    - ./build/ci/nats/nsc:/nsc
+    - ./build/nats-box-entrypoint.sh:/usr/local/bin/nats-box-entrypoint.sh
+    profiles:
+      - "nats"
+    depends_on:
+      - nats-server
+  nats-server:
+    hostname: nats-server
+    container_name: nats-server
+    image: nats:2.10.0
+    entrypoint: /nats-server
+    command: "-c /etc/nats/conf/server.conf -js -m 8222"
+    ports:
+    - "4222"
+    - "8222"
+    volumes:
+    - ./build/ci/nats/keys/:/etc/nats/jwt
+    - ./build/ci/nats/config/:/etc/nats/conf
+    profiles:
+      - "nats"
+volumes:
+  cds-nats-box-data: {}
