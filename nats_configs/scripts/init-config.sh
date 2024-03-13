@@ -12,4 +12,4 @@ nsc add account ${ACCOUNT_NAME};
 nsc edit account -n ${ACCOUNT_NAME} --js-disk-storage -1;
 nsc generate config --nats-resolver > ./resolver.conf
 
-source $CUR_DIR/configure_user.sh
+source $CUR_DIR/user-config.sh
