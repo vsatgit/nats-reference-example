@@ -1,34 +1,28 @@
-version: "3.3"
+# (C) Copyright 2024 Hewlett Packard Enterprise Development LP
+version: "3.5"
 services:
-  cds-proto-dev:
-    hostname: cds-proto-dev
-    container_name: cds-proto-dev
-    image: ghcr.io/hpe-cds/containers-images/cds-proto-dev:latest
-    pull_policy: always
-    privileged: true
-    environment:
-      - HTTP_PROXY
-      - http_proxy
-      - HTTPS_PROXY
-      - https_proxy
-      - NO_PROXY
-      - no_proxy
+  nats-box:
+    hostname: nats-box
+    container_name: nats-box
+    image: natsio/nats-box:0.14.0
+    command: ["/bin/ash", "/usr/local/bin/nats-box-entrypoint.sh"]
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - $HOME/.kube/config:/home/dev/.kube/config
-      - $HOME/.gitconfig:/home/dev/.gitconfig
-      - $HOME/.ssh:/home/dev/.ssh
-      - ${CDSDEV_MNT:-.}:/home/dev/ws
+    - ./nats_configs/scripts/:/user_scripts
+    - ./nats_configs/nsc:/nsc
+    - ./nats_configs/scripts/nats-box-entrypoint.sh:/usr/local/bin/nats-box-entrypoint.sh
+    env_file:
+    - ./nats_configs/.env
+  nats-server:
+    hostname: nats-server
+    container_name: nats-server
+    image: nats:2.10.0
+    entrypoint: /nats-server
+    command: "-c /etc/nats/conf/server.conf -js -m 8222"
     ports:
-      - "22"
-      - "5000-5005"
-      - "3000"
-    healthcheck:
-      test:
-        - CMD
-        - bash
-        - -c
-        - echo hello
-      interval: 30s
-      timeout: 5s
-      retries: 3
+    - "4222"
+    - "8222"
+    volumes:
+    - ./nats_configs/creds/:/etc/nats/jwt
+    - ./nats_configs/server_configs/:/etc/nats/conf
+    env_file:
+    - ./nats_configs/.env
