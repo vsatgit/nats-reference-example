@@ -8,7 +8,7 @@ Code in this repo can be re-used in conjuction with `cds-proto-dev` container ba
 
 ### Why is it necessary?
 
-There are a few steps involved to configure NATS Jetstream server to have authentication/authorization capabilities using JWTs and Nkeys in the local setup. These same steps would be performed by the DevOps team in higher environments.
+There are a few steps involved in configuring NATS Jetstream server to have authentication/authorization capabilities using JWTs and Nkeys in the local setup. These same steps would be performed by the DevOps team in higher environments.
 
 The starter setup tries to abstract out the NATS configurational overhead in local setup so that developers can focus on their primary development processes.
 
@@ -48,19 +48,21 @@ With the move to ghcr.io, you need to [authenticate with a Personal Access Token
 
 ### Commands
 
-The repo has the configured with the following commands:
+The repo has been configured with the following commands:
 
 - `make configure-nats`:     initializes NATS with Authorization and Authentication configured based on provided environment variables and permissions
 - `make nats-down`:          brings down nats-server and nats-box and removes them
 - `make cleanup-dirs`:       cleanup directories that stores NATS JWTs and NKeys
 - `make cleanup-nats`:       cleans up all NATS configuration related to Authorization and Authentication
-- `make reconfigure-nats`:   reconfigures NATS with Authorization and Authentication after clearing the existing
+- `make reconfigure-nats`:   reconfigures NATS with Authorization and Authentication after clearing the existing configuration
 - `nats-start`:              start nats-server and nats-box containers
-- `nats-stop`:               stop nats-server and nats-box containersconfiguration
+- `nats-stop`:               stop nats-server and nats-box containers
 
 ### Initial setup
 
 User should run `make configure-nats` command in order configure NATS authorization and authentication based on the user provided input in `nats_configs/.env` and `nats_configs/scripts/user-config.sh`.
+
+A sample reference is provided for both `nats_configs/.env` and `nats_configs/scripts/user-config.sh`, which can be tweaked as per need.
 
 Upon successful execution of command, the following logs should be seen in the terminal:
 
@@ -90,6 +92,7 @@ Upon successful execution of command, the following logs should be seen in the t
 [ OK ] added user "TestUser" to account "TestAccount"
 ...
 [ OK ] added user "FTUser" to account "TestAccount"
+...
 ```
 
 </details>
