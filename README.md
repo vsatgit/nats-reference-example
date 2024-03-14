@@ -230,7 +230,7 @@ Once `nats-server` has been configured with JWTs and Nkey Seed, `nats-server` an
 
 All the JWTs and NkSeeds needs to be regenerated whenever pub/sub permissions defined in `nats_configs/scripts/user-config.sh` changes. This can be done by execting `make reconfigure-nats` command.
 
-### NATS JWTs and NkSeed management
+## NATS JWTs and NkSeed management
 
 The repo has been setup to allow re-usability in mind. Common configuration related to Operator and Account has been seperated out from the user configuration.
 Refer [NATS Security documentation](https://pages.github.hpe.com/cloud/storage-design/docs/service-communication/nats.html#security) to understand how NATS uses Operator, Account and User to enable its security model.
