@@ -248,4 +248,4 @@ The generated User JWT and NkSeed can be found in `nats_configs/creds` directory
 |------------------|--------|----------------|
 |Operator & Account Setup|sc-ops-nats-jetstream-creds-provisioner|init-config.sh|
 |User JWT & Seed Key Setup |PR adding permissions in [natsAuthzConfigProd.yaml](https://github.hpe.com/cloud/sc-ops-nats-jetstream-creds-provisioner/blob/main/authzfiles/natsAuthzConfigProd.yaml)|Adding permission in `user-config.sh`|
-|User JWT & Seed Key Access|vault path: `storagecentral/app/nats/users/<svc_name>/<USER_NAME>`|creds in directory: `nats_configs/creds/<USER_NAME.creds>|
+|User JWT & Seed Key Access|vault path: `storagecentral/app/nats/users/<svc_name>/<USER_NAME>`|creds in directory: `nats_configs/creds/<USER_NAME.creds>`|
