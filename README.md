@@ -113,7 +113,7 @@ nats-server   nats:2.10.0              "/nats-server -c /et…"   nats-server   
 
 Further inspecting the `nats-box` logs should show the configured Account & Users.
 
-Note: User `Pub Allow` and `Sub Allow` section can be used from the logs to raise PR to configure permissions in sandbox environments
+Note: User `Pub Allow` and `Sub Allow` section can be used from the logs to raise PR to configure permissions in sandbox environments.
 
 <details>
     <summary>nats-box container logs</summary>
@@ -243,7 +243,7 @@ Each microservices should only focus on configuring
 - the environment variables in `nats_configs/.env` as per their requirements and
 - the required `allowed-pub` and `allowed-sub` permission in `nats_configs/scripts/user-config.sh` to generate User JWTs and NkSeed.
 
-The generated User JWT and NkSeed can be found in `nats_configs/creds` directory in a file with `.creds` extension. This cred file should be configured as either environent variable or configuration based on the application specific setup.
+The generated User JWT and NkSeed can be found in `nats_configs/creds` directory in a file with `.creds` extension. This cred file should be configured as either environent variable or an alternate configuration option based on the application specific setup.
 
 ### Process difference between local setup & sandboxes
 
