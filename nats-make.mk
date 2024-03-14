@@ -35,3 +35,13 @@ cleanup-nats: nats-down cleanup-dirs
 ## reconfigure-nats: reconfigures NATS with Authorization and Authentication after clearing the existing configuration
 .PHONY: reconfigure-nats
 reconfigure-nats: cleanup-nats configure-nats
+
+## nats-start: start nats-server and nats-box containers
+.PHONY: nats-start
+nats-start:
+	docker-compose -f docker-compose.yml start
+
+## nats-stop: stop nats-server and nats-box containers
+.PHONY: nats-stop
+nats-stop:
+	docker-compose -f docker-compose.yml stop	
