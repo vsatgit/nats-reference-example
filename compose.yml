@@ -1,6 +1,6 @@
 # (C) Copyright 2024 Hewlett Packard Enterprise Development LP
-version: "3.5"
 services:
+
   nats-box:
     hostname: nats-box
     container_name: nats-box
@@ -12,6 +12,7 @@ services:
     - ./nats_configs/scripts/nats-box-entrypoint.sh:/usr/local/bin/nats-box-entrypoint.sh
     env_file:
     - ./nats_configs/.env
+
   nats-server:
     hostname: nats-server
     container_name: nats-server
