@@ -27,7 +27,7 @@ Having NATS Jetstream server configured with authentication/authorization capabi
 ├── .gitignore                          # lists directories/files to be ignored by git
 ├── Makefile                            # root level Makefile to mimic an actual feature repo Makefile
 ├── README.md
-├── docker-compose.yml                  # docker-compose to start/stop nats-server and nats-box
+├── compose.yml                         # docker compose to start/stop nats-server and nats-box
 ├── nats-make.mk                        # nats configuration specific commands are listed here, can be included as-is in a feature repo
 └── nats_configs                        # parent directory for all nats configuration artefacts
     ├── .env                            # nats specific environment variables
@@ -42,21 +42,27 @@ Having NATS Jetstream server configured with authentication/authorization capabi
 
 ## Dev Environment - Quick Start
 
-### Prerequiste
+### Prerequisites
 
 With the move to ghcr.io, you need to [authenticate with a Personal Access Token (classic)](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-with-a-personal-access-token-classic) with at least `read:packages` scope, ensuring you [authorize the token for SSO](https://docs.github.com/en/enterprise-cloud@latest/authentication/authenticating-with-saml-single-sign-on/authorizing-a-personal-access-token-for-use-with-saml-single-sign-on).
 
 ### Commands
 
-The repo has been configured with the following commands:
+Run `make help`:
 
-- `make configure-nats`:     initializes NATS with Authorization and Authentication configured based on provided environment variables and permissions
-- `make nats-down`:          brings down nats-server and nats-box and removes them
-- `make cleanup-dirs`:       cleanup directories that stores NATS JWTs and NKeys
-- `make cleanup-nats`:       cleans up all NATS configuration related to Authorization and Authentication
-- `make reconfigure-nats`:   reconfigures NATS with Authorization and Authentication after clearing the existing configuration
-- `nats-start`:              start nats-server and nats-box containers
-- `nats-stop`:               stop nats-server and nats-box containers
+```
+Usage: make [TARGET]
+Targets:
+
+help               output help for all targets
+configure-nats     initializes NATS with Authorization and Authentication configured based on provided environment variables
+nats-down          brings down nats-server and nats-box and removes them
+cleanup-dirs       cleanup directories that stores NATS JWTs and NKeys
+cleanup-nats       cleans up all NATS configuration related to Authorization and Authentication 
+reconfigure-nats   reconfigures NATS with Authorization and Authentication after clearing the existing configuration
+nats-start         start nats-server and nats-box containers
+nats-stop          stop nats-server and nats-box containers
+```
 
 ### Initial setup
 

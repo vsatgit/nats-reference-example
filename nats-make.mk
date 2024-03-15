@@ -5,14 +5,6 @@ NATS_CONFIG_DIR    		:= ${PWD}/nats_configs
 NATS_SCRIPTS_DIR    	:= ${NATS_CONFIG_DIR}/scripts
 NATS_SERVER_CONF_DIR	:= ${NATS_CONFIG_DIR}/server_configs
 
-## help: output help for all targets
-.PHONY: help
-help:
-	@echo 'Usage: make [TARGET]'
-	@echo 'Targets:'
-	@echo
-	@fgrep -h '##' $(MAKEFILE_LIST) | fgrep -v fgrep | column -t -s ':' | sed -e 's/## //'
-
 ## configure-nats: initializes NATS with Authorization and Authentication configured based on provided environment variables
 .PHONY: configure-nats
 configure-nats:
