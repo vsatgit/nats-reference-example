@@ -22,7 +22,7 @@ nsc add user \
     ${FUNCTIONAL_TEST_USER_NAME} \
     --allow-pubsub "${EVENT_SUBJECTS}" \
     --allow-sub "_INBOX.>" \
-    --allow-pub "\$JS.ACK.tags.>" \
+    --allow-pub "\$JS.ACK.${STREAM_NAME}.>" \
     --allow-pub "\$JS.API.CONSUMER.CREATE.${STREAM_NAME}" \
     --allow-pub "\$JS.API.CONSUMER.CREATE.${STREAM_NAME}.>" \
     --allow-pub "\$JS.API.CONSUMER.DELETE.${STREAM_NAME}.>" \
